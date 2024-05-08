@@ -35,5 +35,25 @@ namespace HashTables
             _studentHashtable.Remove(id);
         }
 
+        // Method to sort students by ID in ascending or descending order
+        public IEnumerable<IStudent> SortStudentsById(bool ascending = true)
+        {
+            var sortedStudents = _studentHashtable.GetAllEntries()
+                .Select(entry => entry.Value)
+                .OrderBy(student => student.Id);
+
+            return ascending ? sortedStudents : sortedStudents.Reverse();
+        }
+
+        // Method to sort students by name in ascending or descending order
+        public IEnumerable<IStudent> SortStudentsByName(bool ascending = true)
+        {
+            var sortedStudents = _studentHashtable.GetAllEntries()
+                .Select(entry => entry.Value)
+                .OrderBy(student => student.Name);
+
+            return ascending ? sortedStudents : sortedStudents.Reverse();
+        }
+
     }
 }
